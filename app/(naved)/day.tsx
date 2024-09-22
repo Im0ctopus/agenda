@@ -29,6 +29,7 @@ const Day = ({
     const [time, setTime] = useState('')
     const [isLoading, setIsLoading] = useState(true)
     const [data, setData] = useState<Item[]>([])
+    const [isUploading, setIsUploading] = useState(false)
 
     const fetchData = async () => {
         if(!isLoading) setIsLoading(true)
@@ -58,18 +59,18 @@ const Day = ({
             toast.error('Preencha todos os campos de forma válida')
             return
         }
-
+        setIsUploading(true)
         const res = await addOrder(name, numberAmount, time, date.year, date.month, day)
         if(res == null) toast.error('Erro a adicionar!')
-        else{
-            setName('')
-            setAmount('')
-            setTime('')
-            toast.success('Adicionado')
-            handleFetchMonth()
-            fetchData()
-        }
-
+            else{
+        setName('')
+        setAmount('')
+        setTime('')
+        toast.success('Adicionado')
+        handleFetchMonth()
+        fetchData()
+    }
+        setIsUploading(false)
     }
 
     const handleClose = () => {
@@ -149,7 +150,7 @@ const Day = ({
                             className="bg-zinc-700 w-full border-none font-semibold rounded-lg text-white py-1 px-2 text-center" />
                     </div>
                     <div className="flex h-full items-end col-span-4">
-                        <button type="submit" className="bg-blue-600 py-2 w-full rounded-lg">Adicionar</button>
+                        <button disabled={isUploading} type="submit" className="bg-blue-600 py-2 w-full rounded-lg">{isUploading ? <Loader2 size={20} strokeWidth={1} className="animate-spin" /> : <p>Adicionar</p>}</button>
                     </div>
                 </form>
             </div>
