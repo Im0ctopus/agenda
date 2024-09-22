@@ -150,7 +150,7 @@ const Day = ({
                             className="bg-zinc-700 w-full border-none font-semibold rounded-lg text-white py-1 px-2 text-center" />
                     </div>
                     <div className="flex h-full items-end col-span-4">
-                        <button disabled={isUploading} type="submit" className="bg-blue-600 py-2 w-full rounded-lg">{isUploading ? <Loader2 size={20} strokeWidth={1} className="animate-spin" /> : <p>Adicionar</p>}</button>
+                        <button disabled={isUploading} type="submit" className="bg-blue-600 py-2 w-full rounded-lg flex justify-center items-center">{isUploading ? <Loader2 size={20} strokeWidth={1} className="animate-spin" /> : <p>Adicionar</p>}</button>
                     </div>
                 </form>
             </div>
